@@ -3,6 +3,7 @@ package com.example.carwashapi.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
@@ -25,8 +26,10 @@ public class Booking {
     private Customer customer;
 
     @Column(nullable = false)
+    @NotNull(message = "Start time cannot be null")
     private LocalDateTime startTime;
 
     @Column(nullable = false)
+    @NotNull(message = "End time cannot be null")
     private LocalDateTime endTime;
 }

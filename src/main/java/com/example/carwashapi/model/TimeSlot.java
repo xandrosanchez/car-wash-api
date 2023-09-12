@@ -3,6 +3,7 @@ package com.example.carwashapi.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
@@ -20,7 +21,12 @@ public class TimeSlot {
     @JoinColumn(name = "service_id")
     private Service service;
 
+    @Column(nullable = false)
+    @NotNull(message = "Start time cannot be null")
     private LocalDateTime startTime;
+
+    @Column(nullable = false)
+    @NotNull(message = "End time cannot be null")
     private LocalDateTime endTime;
     private boolean available;
 }

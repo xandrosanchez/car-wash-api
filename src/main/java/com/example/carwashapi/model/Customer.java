@@ -3,6 +3,7 @@ package com.example.carwashapi.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Data
@@ -17,9 +18,11 @@ public class Customer {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Name cannot be blank")
     private String name;
 
     @Column(nullable = false)
+    @NotBlank(message = "Phone number cannot be blank")
     private String phoneNumber;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
