@@ -32,4 +32,6 @@ public class Booking {
     @Column(nullable = false)
     @NotNull(message = "End time cannot be null")
     private LocalDateTime endTime;
+
+
 }

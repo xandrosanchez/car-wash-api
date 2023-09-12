@@ -59,6 +59,7 @@ public class BookingService {
         booking.setService(service);
         booking.setStartTime(startTime);
         booking.setEndTime(endTime);
+        booking.setId(1L);
 
         return bookingRepository.save(booking);
     }
