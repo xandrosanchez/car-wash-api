@@ -3,6 +3,7 @@ package com.example.carwashapi.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,4 +21,7 @@ public class Service {
 
     @Column(nullable = false)
     private double price;
+
+    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+    private List<TimeSlot> timeSlots;
 }
