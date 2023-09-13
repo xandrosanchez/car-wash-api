@@ -2,8 +2,12 @@ package com.example.carwashapi.controller;
 
 import com.example.carwashapi.exception.CustomerNotFoundException;
 import com.example.carwashapi.exception.NotFoundException;
+import com.example.carwashapi.exception.TimeslotNotFoundException;
+import com.example.carwashapi.model.Booking;
 import com.example.carwashapi.model.Customer;
+import com.example.carwashapi.model.Timeslot;
 import com.example.carwashapi.service.CustomerService;
+import com.example.carwashapi.service.TimeslotService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -29,12 +34,32 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    @Operation(summary = "Получает оставшееся время до записи по номеру клиента")
+    @GetMapping("/remaining-time/{phoneNumber}")
+    public ResponseEntity<Long> getRemainingTimeToBooking(
+            @Parameter(in = ParameterIn.PATH, name = "phoneNumber", description = "номер клиента")
+            @PathVariable String phoneNumber) throws CustomerNotFoundException {
+        Optional<Customer> optionalCustomer = Optional.ofNullable(customerService.getCustomerByPhoneNumber(phoneNumber));
+
+        if (optionalCustomer.isPresent()) {
+            Customer customer = optionalCustomer.get();
+            long remainingMinutes = customerService.getRemainingTimeUntilNextBooking(customer);
+
+            if (remainingMinutes != -1) {
+                return ResponseEntity.ok(remainingMinutes);
+            }
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+
     @Operation(summary = "Создает нового Customer")
     @PostMapping("/create")
     public ResponseEntity<Customer> createCustomer(
             @Parameter(in = ParameterIn.DEFAULT, description = "Данные для создания Customer")
-            @Valid @RequestBody Customer customer) {
-        Customer createdCustomer = customerService.createCustomer(customer);
+            @Valid @RequestBody CustomerRequest customerRequest) {
+        Customer createdCustomer = customerService.createCustomer(customerRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
     }
 
@@ -61,8 +86,8 @@ public class CustomerController {
             @Positive(message = "customerId должен быть положительным числом")
             @PathVariable Long customerId,
             @Parameter(in = ParameterIn.DEFAULT, description = "Данные для обновления Customer")
-            @Valid @RequestBody Customer updatedCustomer) throws CustomerNotFoundException {
-        Customer customer = customerService.updateCustomer(customerId, updatedCustomer);
+            @Valid @RequestBody CustomerRequest customerRequest) throws CustomerNotFoundException {
+        Customer customer = customerService.updateCustomer(customerId, customerRequest);
         return ResponseEntity.ok(customer);
     }
 
