@@ -1,5 +1,6 @@
 package com.example.carwashapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,10 +20,12 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "service_id")
+    @JsonIgnore
     private Service service;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonIgnore
     private Customer customer;
 
     @Column(nullable = false)

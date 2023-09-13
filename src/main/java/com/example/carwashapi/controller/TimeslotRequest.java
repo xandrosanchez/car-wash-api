@@ -16,25 +16,22 @@ import java.time.LocalDateTime;
 @Data
 @Getter
 @AllArgsConstructor
-public class BookingRequest {
-    @NotNull(message = "customerId не может быть null")
-    @Positive(message = "customerId должен быть положительным числом")
-    private Long customerId; // Идентификатор клиента
-
+public class TimeslotRequest {
     @NotNull(message = "serviceId не может быть null")
     @Positive(message = "serviceId должен быть положительным числом")
-    private Long serviceId;  // Идентификатор выбранной услуги
+    private Long serviceId;
 
     @NotNull
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") // Устанавливаем формат для Swagger
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime startTime;
 
     @NotNull
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") // Устанавливаем формат для Swagger
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime endTime;
-}
 
+    private boolean available;
+}
