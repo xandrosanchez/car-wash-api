@@ -9,6 +9,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+/**
+ * Сервис для управления услугами.
+ */
 @org.springframework.stereotype.Service
 public class ServiceService {
     private final ServiceRepository repository;
@@ -18,11 +21,23 @@ public class ServiceService {
         this.repository = repository;
     }
 
+    /**
+     * Получает список всех доступных услуг.
+     *
+     * @return Список всех услуг.
+     */
     public List<Service> getAllServices() {
         logger.info("Запрос всех услуг");
         return repository.findAll();
     }
 
+    /**
+     * Получает услугу по её идентификатору.
+     *
+     * @param serviceId Идентификатор услуги.
+     * @return Услуга с указанным идентификатором.
+     * @throws ServiceNotFoundException если услуга не найдена.
+     */
     public Service getServiceById(Long serviceId) throws ServiceNotFoundException {
         logger.info("Запрос услуги по ID: {}", serviceId);
         return repository.findById(serviceId)
@@ -32,6 +47,12 @@ public class ServiceService {
                 });
     }
 
+    /**
+     * Добавляет новую услугу.
+     *
+     * @param serviceRequest Данные для создания новой услуги.
+     * @return Созданная услуга.
+     */
     public Service addService(ServiceRequest serviceRequest) {
         logger.info("Добавление новой услуги: {}", serviceRequest.getName());
         Service service = new Service();
@@ -40,6 +61,12 @@ public class ServiceService {
         return repository.save(service);
     }
 
+    /**
+     * Удаляет услугу по её идентификатору.
+     *
+     * @param serviceId Идентификатор услуги, которую требуется удалить.
+     * @throws ServiceNotFoundException если услуга не найдена.
+     */
     public void deleteService(Long serviceId) throws ServiceNotFoundException {
         logger.info("Удаление услуги по ID: {}", serviceId);
         if (!repository.existsById(serviceId)) {
@@ -49,6 +76,14 @@ public class ServiceService {
         repository.deleteById(serviceId);
     }
 
+    /**
+     * Обновляет информацию о услуге по её идентификатору.
+     *
+     * @param serviceId           Идентификатор услуги, которую требуется обновить.
+     * @param updatedServiceRequest Данные для обновления услуги.
+     * @return Обновленная услуга.
+     * @throws ServiceNotFoundException если услуга не найдена.
+     */
     public Service updateService(Long serviceId, ServiceRequest updatedServiceRequest) throws ServiceNotFoundException {
         logger.info("Обновление услуги по ID: {}", serviceId);
         if (!repository.existsById(serviceId)) {

@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Сервис для управления временными слотами.
+ */
 @Service
 public class TimeslotService {
     private final TimeslotRepository repository;
@@ -22,11 +25,23 @@ public class TimeslotService {
         this.serviceService = serviceService;
     }
 
+    /**
+     * Получает список всех доступных временных слотов.
+     *
+     * @return Список всех временных слотов.
+     */
     public List<Timeslot> getAllTimeslots() {
         logger.info("Запрос всех Timeslot");
         return repository.findAll();
     }
 
+    /**
+     * Получает временный слот по его идентификатору.
+     *
+     * @param timeslotId Идентификатор временного слота.
+     * @return Временный слот с указанным идентификатором.
+     * @throws TimeslotNotFoundException если временный слот не найден.
+     */
     public Timeslot getTimeslotById(Long timeslotId) throws TimeslotNotFoundException {
         logger.info("Запрос Timeslot по ID: {}", timeslotId);
         return repository.findById(timeslotId)
@@ -36,6 +51,13 @@ public class TimeslotService {
                 });
     }
 
+    /**
+     * Добавляет новый временный слот.
+     *
+     * @param timeslotRequest Данные для создания нового временного слота.
+     * @return Созданный временный слот.
+     * @throws ServiceNotFoundException если услуга не найдена.
+     */
     public Timeslot addTimeslot(TimeslotRequest timeslotRequest) throws ServiceNotFoundException {
         logger.info("Добавление нового Timeslot");
         com.example.carwashapi.model.Service service = serviceService.getServiceById(timeslotRequest.getServiceId());
@@ -47,6 +69,12 @@ public class TimeslotService {
         return repository.save(timeslot);
     }
 
+    /**
+     * Удаляет временный слот по его идентификатору.
+     *
+     * @param timeslotId Идентификатор временного слота, который требуется удалить.
+     * @throws TimeslotNotFoundException если временный слот не найден.
+     */
     public void deleteTimeslot(Long timeslotId) throws TimeslotNotFoundException {
         logger.info("Удаление Timeslot по ID: {}", timeslotId);
         if (!repository.existsById(timeslotId)) {
@@ -56,6 +84,15 @@ public class TimeslotService {
         repository.deleteById(timeslotId);
     }
 
+    /**
+     * Обновляет информацию о временном слоте по его идентификатору.
+     *
+     * @param timeslotId            Идентификатор временного слота, который требуется обновить.
+     * @param updatedTimeslotRequest Данные для обновления временного слота.
+     * @return Обновленный временный слот.
+     * @throws TimeslotNotFoundException если временный слот не найден.
+     * @throws ServiceNotFoundException  если услуга не найдена.
+     */
     public Timeslot updateTimeslot(Long timeslotId, TimeslotRequest updatedTimeslotRequest)
             throws TimeslotNotFoundException, ServiceNotFoundException {
         logger.info("Обновление Timeslot по ID: {}", timeslotId);
