@@ -19,7 +19,6 @@ import javax.validation.constraints.Positive;
 @RequestMapping("/api/admin/services")
 @Validated
 public class ServiceAdminController {
-
     private final ServiceService serviceService;
 
     @Autowired

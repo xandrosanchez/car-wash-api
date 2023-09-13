@@ -4,4 +4,7 @@ public class TimeslotNotFoundException extends Exception {
     public TimeslotNotFoundException(String timeslotNotFound) {
         super(timeslotNotFound);
     }
+    public TimeslotNotFoundException(){
+        super();
+    }
 }

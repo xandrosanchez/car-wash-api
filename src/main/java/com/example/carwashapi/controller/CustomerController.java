@@ -24,7 +24,6 @@ import java.util.Optional;
 @Validated
 @Slf4j
 public class CustomerController {
-
     private final CustomerService customerService;
 
     @Autowired
