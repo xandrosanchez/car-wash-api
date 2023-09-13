@@ -10,7 +10,6 @@ import com.example.carwashapi.service.BookingService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Контроллер для управления бронированиями.
+ */
 @RestController
 @RequestMapping("/api/bookings")
 public class BookingController {
@@ -33,6 +35,11 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
+    /**
+     * Получает список всех доступных услуг.
+     *
+     * @return Список всех доступных услуг.
+     */
     @Operation(summary = "Получает список всех услуг")
     @GetMapping("/services")
     public List<Service> getAllServices() {
@@ -40,6 +47,14 @@ public class BookingController {
         return bookingService.getAllServices();
     }
 
+    /**
+     * Получает доступное время для указанной услуги.
+     *
+     * @param serviceId Идентификатор услуги.
+     * @return Список доступных временных слотов для указанной услуги.
+     * @throws NotFoundException       если услуга не найдена.
+     * @throws ServiceNotFoundException если услуга не найдена.
+     */
     @Operation(summary = "Получает доступное время для услуги")
     @GetMapping("/availability/{serviceId}")
     public List<Timeslot> getAvailabilityForService(
@@ -54,6 +69,15 @@ public class BookingController {
         return bookingService.getAvailableTimeSlotsForService(service);
     }
 
+    /**
+     * Создает новое бронирование.
+     *
+     * @param bookingRequest Данные для создания бронирования.
+     * @return Созданное бронирование.
+     * @throws BookingConflictException если есть конфликт в расписании.
+     * @throws NotFoundException        если клиент или услуга не найдены.
+     * @throws ServiceNotFoundException  если услуга не найдена.
+     */
     @Operation(summary = "Создает бронирование")
     @PostMapping("/create")
     public ResponseEntity<Booking> createBooking(
@@ -65,6 +89,13 @@ public class BookingController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBooking);
     }
 
+    /**
+     * Получает бронирование по его идентификатору.
+     *
+     * @param bookingId Идентификатор бронирования.
+     * @return Бронирование с указанным идентификатором.
+     * @throws NotFoundException если бронирование не найдено.
+     */
     @Operation(summary = "Получает бронирование по ID")
     @GetMapping("/{bookingId}")
     public ResponseEntity<Booking> getBookingById(
@@ -79,6 +110,15 @@ public class BookingController {
         return ResponseEntity.ok(booking);
     }
 
+    /**
+     * Обновляет бронирование по его идентификатору.
+     *
+     * @param bookingId       Идентификатор бронирования, которое требуется обновить.
+     * @param bookingRequest  Данные для обновления бронирования.
+     * @return Обновленное бронирование.
+     * @throws BookingConflictException если есть конфликт в расписании.
+     * @throws NotFoundException        если бронирование не найдено.
+     */
     @Operation(summary = "Обновляет бронирование по ID")
     @PutMapping("/{bookingId}")
     public ResponseEntity<Booking> updateBooking(
@@ -92,6 +132,12 @@ public class BookingController {
         return ResponseEntity.ok(updatedBooking);
     }
 
+    /**
+     * Удаляет бронирование по его идентификатору.
+     *
+     * @param bookingId Идентификатор бронирования, которое требуется удалить.
+     * @return ResponseEntity без содержимого (No Content) в случае успешного удаления.
+     */
     @Operation(summary = "Удаляет бронирование по ID")
     @DeleteMapping("/{bookingId}")
     public ResponseEntity<Void> deleteBookingById(
@@ -103,6 +149,11 @@ public class BookingController {
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Получает список всех бронирований.
+     *
+     * @return Список всех бронирований.
+     */
     @Operation(summary = "Получает список всех бронирований")
     @GetMapping("/all")
     public List<Booking> getAllBookings() {

@@ -22,7 +22,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/customers")
 @Validated
-@Slf4j // Добавляем аннотацию для создания логгера
+@Slf4j
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -32,6 +32,13 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    /**
+     * Получает оставшееся время до записи по номеру клиента.
+     *
+     * @param phoneNumber Номер клиента.
+     * @return Оставшееся время до бронирования клиента.
+     * @throws CustomerNotFoundException если клиент не найден.
+     */
     @Operation(summary = "Получает оставшееся время до записи по номеру клиента")
     @GetMapping("/remaining-time/{phoneNumber}")
     public ResponseEntity<Long> getRemainingTimeToBooking(
@@ -55,6 +62,12 @@ public class CustomerController {
         return ResponseEntity.notFound().build();
     }
 
+    /**
+     * Создает нового клиента.
+     *
+     * @param customerRequest Данные для создания клиента.
+     * @return Созданный клиент.
+     */
     @Operation(summary = "Создает нового Customer")
     @PostMapping("/create")
     public ResponseEntity<Customer> createCustomer(
@@ -68,12 +81,24 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
     }
 
+    /**
+     * Получает список всех клиентов.
+     *
+     * @return Список всех клиентов.
+     */
     @Operation(summary = "Получает список всех Customers")
     @GetMapping("/all")
     public List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
+    /**
+     * Получает клиента по его идентификатору.
+     *
+     * @param customerId Идентификатор клиента.
+     * @return Клиент с указанным идентификатором.
+     * @throws NotFoundException если клиент не найден.
+     */
     @Operation(summary = "Получает Customer по ID")
     @GetMapping("/{customerId}")
     public ResponseEntity<Customer> getCustomerById(
@@ -84,6 +109,14 @@ public class CustomerController {
         return ResponseEntity.ok(customer);
     }
 
+    /**
+     * Обновляет данные клиента по его идентификатору.
+     *
+     * @param customerId      Идентификатор клиента, данные которого требуется обновить.
+     * @param customerRequest Данные для обновления клиента.
+     * @return Обновленный клиент.
+     * @throws CustomerNotFoundException если клиент не найден.
+     */
     @Operation(summary = "Обновляет Customer по ID")
     @PutMapping("/{customerId}")
     public ResponseEntity<Customer> updateCustomer(
@@ -96,6 +129,12 @@ public class CustomerController {
         return ResponseEntity.ok(customer);
     }
 
+    /**
+     * Удаляет клиента по его идентификатору.
+     *
+     * @param customerId Идентификатор клиента, которого требуется удалить.
+     * @return ResponseEntity без содержимого (No Content) в случае успешного удаления.
+     */
     @Operation(summary = "Удаляет Customer по ID")
     @DeleteMapping("/{customerId}")
     public ResponseEntity<Void> deleteCustomerById(

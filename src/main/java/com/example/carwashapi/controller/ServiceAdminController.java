@@ -27,6 +27,12 @@ public class ServiceAdminController {
         this.serviceService = serviceService;
     }
 
+    /**
+     * Добавляет новую услугу.
+     *
+     * @param serviceRequest Данные для добавления услуги.
+     * @return Созданная услуга.
+     */
     @Operation(summary = "Добавляет новую услугу")
     @PostMapping("/add")
     public ResponseEntity<Service> addService(
@@ -36,6 +42,13 @@ public class ServiceAdminController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdService);
     }
 
+    /**
+     * Удаляет услугу по её идентификатору.
+     *
+     * @param serviceId Идентификатор услуги, которую требуется удалить.
+     * @return ResponseEntity без содержимого (No Content) в случае успешного удаления.
+     * @throws ServiceNotFoundException если услуга не найдена.
+     */
     @Operation(summary = "Удаляет услугу по ID")
     @DeleteMapping("/delete/{serviceId}")
     public ResponseEntity<Void> deleteService(
@@ -46,6 +59,14 @@ public class ServiceAdminController {
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Обновляет услугу по её идентификатору.
+     *
+     * @param serviceId       Идентификатор услуги, которую требуется обновить.
+     * @param serviceRequest  Данные для обновления услуги.
+     * @return Обновленная услуга.
+     * @throws ServiceNotFoundException если услуга не найдена.
+     */
     @Operation(summary = "Обновляет услугу по ID")
     @PutMapping("/update/{serviceId}")
     public ResponseEntity<Service> updateService(
@@ -53,7 +74,7 @@ public class ServiceAdminController {
             @Positive(message = "serviceId должен быть положительным числом")
             @PathVariable Long serviceId,
             @Parameter(in = ParameterIn.DEFAULT, description = "Данные для обновления услуги")
-            @Valid @RequestBody ServiceRequest serviceRequest) throws ServiceNotFoundException, ServiceNotFoundException {
+            @Valid @RequestBody ServiceRequest serviceRequest) throws ServiceNotFoundException {
         Service updatedService = serviceService.updateService(serviceId, serviceRequest);
         return ResponseEntity.ok(updatedService);
     }
