@@ -47,6 +47,9 @@ public class CustomerService {
      * @return Оставшееся время до ближайшего бронирования клиента в минутах, или -1, если у клиента нет броней.
      */
     public long getRemainingTimeUntilNextBooking(Customer customer) {
+        if (customer == null || customer.getBookings() == null) {
+            return -1; // Если клиент не найден или у клиента нет броней, возвращаем -1.
+        }
         if (customer.getBookings().isEmpty()) {
             return -1; // Если у клиента нет броней, возвращаем -1, как индикатор отсутствия ближайших броней.
         }
