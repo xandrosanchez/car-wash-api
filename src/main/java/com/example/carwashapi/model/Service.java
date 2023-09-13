@@ -27,5 +27,5 @@ public class Service {
     private double price;
 
     @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
-    private List<TimeSlot> timeSlots;
+    private List<Timeslot> timeslots;
 }

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @Setter
 @Entity
-public class TimeSlot {
+public class Timeslot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
