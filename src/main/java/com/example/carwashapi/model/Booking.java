@@ -10,8 +10,6 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@Setter
 @Entity
 public class Booking {
     @Id
