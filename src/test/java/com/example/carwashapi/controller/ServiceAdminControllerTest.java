@@ -3,7 +3,7 @@ package com.example.carwashapi.controller;
 import com.example.carwashapi.dto.ServiceRequest;
 import com.example.carwashapi.exception.ServiceNotFoundException;
 import com.example.carwashapi.model.Service;
-import com.example.carwashapi.service.ServiceService;
+import com.example.carwashapi.service.ServiceServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -21,7 +21,7 @@ public class ServiceAdminControllerTest {
     private ServiceAdminController serviceAdminController;
 
     @Mock
-    private ServiceService serviceService;
+    private ServiceServiceImpl serviceService;
 
     @BeforeEach
     void setUp() {

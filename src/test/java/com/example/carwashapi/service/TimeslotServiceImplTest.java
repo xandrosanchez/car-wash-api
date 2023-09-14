@@ -21,16 +21,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class TimeslotServiceTest {
+public class TimeslotServiceImplTest {
 
     @Mock
     private TimeslotRepository timeslotRepository;
 
     @Mock
-    private ServiceService serviceService;
+    private ServiceServiceImpl serviceService;
 
     @InjectMocks
-    private TimeslotService timeslotService;
+    private TimeslotServiceImpl timeslotService;
 
     @BeforeEach
     public void setUp() {

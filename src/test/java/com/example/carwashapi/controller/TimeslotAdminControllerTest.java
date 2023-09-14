@@ -5,7 +5,7 @@ import com.example.carwashapi.exception.NotFoundException;
 import com.example.carwashapi.exception.ServiceNotFoundException;
 import com.example.carwashapi.exception.TimeslotNotFoundException;
 import com.example.carwashapi.model.Timeslot;
-import com.example.carwashapi.service.TimeslotService;
+import com.example.carwashapi.service.TimeslotServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -25,7 +25,7 @@ public class TimeslotAdminControllerTest {
     private TimeslotAdminController timeslotAdminController;
 
     @Mock
-    private TimeslotService timeslotService;
+    private TimeslotServiceImpl timeslotService;
 
     @BeforeEach
     void setUp() {

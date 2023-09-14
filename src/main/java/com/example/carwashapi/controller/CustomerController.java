@@ -5,6 +5,7 @@ import com.example.carwashapi.exception.CustomerNotFoundException;
 import com.example.carwashapi.exception.NotFoundException;
 import com.example.carwashapi.model.Customer;
 import com.example.carwashapi.service.CustomerService;
+import com.example.carwashapi.service.CustomerServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -28,7 +29,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @Autowired
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerServiceImpl customerService) {
         this.customerService = customerService;
     }
 

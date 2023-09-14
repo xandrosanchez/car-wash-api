@@ -8,6 +8,7 @@ import com.example.carwashapi.model.Booking;
 import com.example.carwashapi.model.Service;
 import com.example.carwashapi.model.Timeslot;
 import com.example.carwashapi.service.BookingService;
+import com.example.carwashapi.service.BookingServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -32,7 +33,7 @@ public class BookingController {
     private final Logger logger = LoggerFactory.getLogger(BookingController.class);
 
     @Autowired
-    public BookingController(BookingService bookingService) {
+    public BookingController(BookingServiceImpl bookingService) {
         this.bookingService = bookingService;
     }
 

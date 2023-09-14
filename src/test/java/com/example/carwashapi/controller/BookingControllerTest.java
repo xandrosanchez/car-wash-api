@@ -7,7 +7,7 @@ import com.example.carwashapi.exception.ServiceNotFoundException;
 import com.example.carwashapi.model.Booking;
 import com.example.carwashapi.model.Service;
 import com.example.carwashapi.model.Timeslot;
-import com.example.carwashapi.service.BookingService;
+import com.example.carwashapi.service.BookingServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.*;
 public class BookingControllerTest {
 
     @Mock
-    private BookingService bookingService;
+    private BookingServiceImpl bookingService;
 
     @InjectMocks
     private BookingController bookingController;

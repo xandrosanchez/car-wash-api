@@ -25,16 +25,16 @@ import static org.mockito.Mockito.*;
 public class BookingServiceTest {
 
     @InjectMocks
-    private BookingService bookingService;
+    private BookingServiceImpl bookingService;
 
     @Mock
     private BookingRepository bookingRepository;
 
     @Mock
-    private CustomerService customerService;
+    private CustomerServiceImpl customerService;
 
     @Mock
-    private ServiceService serviceService;
+    private ServiceServiceImpl serviceService;
 
     @Before
     public void setUp() {

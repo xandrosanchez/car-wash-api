@@ -21,10 +21,10 @@ import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class CustomerServiceTest {
+public class CustomerServiceImplTest {
 
     @InjectMocks
-    private CustomerService customerService;
+    private CustomerServiceImpl customerService;
 
     @Mock
     private CustomerRepository customerRepository;

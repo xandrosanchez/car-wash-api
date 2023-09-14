@@ -6,6 +6,7 @@ import com.example.carwashapi.exception.ServiceNotFoundException;
 import com.example.carwashapi.exception.TimeslotNotFoundException;
 import com.example.carwashapi.model.Timeslot;
 import com.example.carwashapi.service.TimeslotService;
+import com.example.carwashapi.service.TimeslotServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -26,7 +27,7 @@ public class TimeslotAdminController {
     private final TimeslotService timeslotService;
 
     @Autowired
-    public TimeslotAdminController(TimeslotService timeslotService) {
+    public TimeslotAdminController(TimeslotServiceImpl timeslotService) {
         this.timeslotService = timeslotService;
     }
 

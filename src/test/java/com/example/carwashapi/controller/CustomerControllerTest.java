@@ -4,7 +4,7 @@ import com.example.carwashapi.dto.CustomerRequest;
 import com.example.carwashapi.exception.CustomerNotFoundException;
 import com.example.carwashapi.exception.NotFoundException;
 import com.example.carwashapi.model.Customer;
-import com.example.carwashapi.service.CustomerService;
+import com.example.carwashapi.service.CustomerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -25,7 +25,7 @@ public class CustomerControllerTest {
     private CustomerController customerController;
 
     @Mock
-    private CustomerService customerService;
+    private CustomerServiceImpl customerService;
 
     @BeforeEach
     public void init() {

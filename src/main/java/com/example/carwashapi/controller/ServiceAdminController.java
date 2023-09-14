@@ -4,6 +4,7 @@ import com.example.carwashapi.dto.ServiceRequest;
 import com.example.carwashapi.exception.ServiceNotFoundException;
 import com.example.carwashapi.model.Service;
 import com.example.carwashapi.service.ServiceService;
+import com.example.carwashapi.service.ServiceServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -23,7 +24,7 @@ public class ServiceAdminController {
     private final ServiceService serviceService;
 
     @Autowired
-    public ServiceAdminController(ServiceService serviceService) {
+    public ServiceAdminController(ServiceServiceImpl serviceService) {
         this.serviceService = serviceService;
     }
 

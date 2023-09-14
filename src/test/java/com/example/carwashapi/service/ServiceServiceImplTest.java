@@ -17,13 +17,13 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class ServiceServiceTest {
+public class ServiceServiceImplTest {
 
     @Mock
     private ServiceRepository serviceRepository;
 
     @InjectMocks
-    private ServiceService serviceService;
+    private ServiceServiceImpl serviceService;
 
     @BeforeEach
     public void setUp() {
