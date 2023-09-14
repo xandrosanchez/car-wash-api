@@ -90,9 +90,7 @@ public class CustomerServiceImpl implements CustomerService{
      */
     public Customer createCustomer(CustomerRequest customerRequest) {
         log.info("Создание нового клиента: {}", customerRequest.getName());
-        Customer customer = new Customer();
-        customer.setName(customerRequest.getName());
-        customer.setPhoneNumber(customerRequest.getPhoneNumber());
+        Customer customer = new Customer(customerRequest.getName(),customerRequest.getPhoneNumber());
         return customerRepository.save(customer);
     }
 

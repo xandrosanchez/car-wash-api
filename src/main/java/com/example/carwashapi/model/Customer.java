@@ -27,4 +27,9 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Booking> bookings;
+
+    public Customer(String name, String phoneNumber){
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
 }
