@@ -1,6 +1,6 @@
 package com.example.carwashapi.service;
 
-import com.example.carwashapi.controller.CustomerRequest;
+import com.example.carwashapi.dto.CustomerRequest;
 import com.example.carwashapi.exception.CustomerNotFoundException;
 import com.example.carwashapi.exception.NotFoundException;
 import com.example.carwashapi.model.Booking;

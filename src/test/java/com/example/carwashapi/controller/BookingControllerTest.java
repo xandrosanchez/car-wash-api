@@ -1,7 +1,6 @@
 package com.example.carwashapi.controller;
 
-import com.example.carwashapi.controller.BookingController;
-import com.example.carwashapi.controller.BookingRequest;
+import com.example.carwashapi.dto.BookingRequest;
 import com.example.carwashapi.exception.BookingConflictException;
 import com.example.carwashapi.exception.NotFoundException;
 import com.example.carwashapi.exception.ServiceNotFoundException;
@@ -9,7 +8,6 @@ import com.example.carwashapi.model.Booking;
 import com.example.carwashapi.model.Service;
 import com.example.carwashapi.model.Timeslot;
 import com.example.carwashapi.service.BookingService;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,7 +16,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 

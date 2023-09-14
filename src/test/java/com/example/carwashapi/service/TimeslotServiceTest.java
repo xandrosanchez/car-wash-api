@@ -1,6 +1,6 @@
 package com.example.carwashapi.service;
 
-import com.example.carwashapi.controller.TimeslotRequest;
+import com.example.carwashapi.dto.TimeslotRequest;
 import com.example.carwashapi.exception.ServiceNotFoundException;
 import com.example.carwashapi.exception.TimeslotNotFoundException;
 import com.example.carwashapi.model.Service;

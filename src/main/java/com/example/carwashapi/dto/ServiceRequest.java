@@ -1,4 +1,4 @@
-package com.example.carwashapi.controller;
+package com.example.carwashapi.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

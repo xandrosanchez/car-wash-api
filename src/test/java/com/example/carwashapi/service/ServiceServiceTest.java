@@ -1,6 +1,6 @@
 package com.example.carwashapi.service;
 
-import com.example.carwashapi.controller.ServiceRequest;
+import com.example.carwashapi.dto.ServiceRequest;
 import com.example.carwashapi.exception.ServiceNotFoundException;
 import com.example.carwashapi.model.Service;
 import com.example.carwashapi.repository.ServiceRepository;

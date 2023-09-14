@@ -1,7 +1,7 @@
 package com.example.carwashapi.config;
 
 import com.example.carwashapi.exception.BookingConflictException;
-import com.example.carwashapi.exception.ErrorResponse;
+import com.example.carwashapi.dto.ErrorResponse;
 import com.example.carwashapi.exception.NotFoundException;
 import com.example.carwashapi.exception.ServiceNotFoundException;
 import org.springframework.http.HttpStatus;

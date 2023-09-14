@@ -1,4 +1,4 @@
-package com.example.carwashapi.exception;
+package com.example.carwashapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
